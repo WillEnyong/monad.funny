@@ -1,33 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASCII Art Generator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.1/figlet.min.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>ASCII Art Generator</h1>
+    <div class="container">
+        <h1>ASCII Art Generator</h1>
 
-    <div class="input-container">
-        <label for="inputText">Masukkan Teks:</label><br>
-        <textarea id="inputText" rows="4" cols="50" placeholder="Masukkan teks di sini"></textarea>
-    </div>
+        <label for="inputText">Masukkan Teks:</label>
+        <input type="text" id="inputText" placeholder="Ketik sesuatu..." oninput="generateAscii()">
 
-    <div class="font-selection">
-        <label for="fontSelect">Pilih Font:</label>
-        <select id="fontSelect">
-            <option value="graffiti">Graffiti</option>
-            <option value="standard">Standard</option>
-            <option value="slant">Slant</option>
-            <!-- Tambahkan opsi font lain di sini -->
+        <label for="font">Pilih Font:</label>
+        <select id="font" onchange="generateAscii()">
+            <option value="Standard">Standard</option>
+            <option value="Graffiti">Graffiti</option>
+            <option value="Big">Big</option>
+            <option value="Slant">Slant</option>
+            <option value="Small">Small</option>
         </select>
-    </div>
 
-    <button id="generateButton">Generate ASCII Art</button>
+        <label for="width">Character Width:</label>
+        <input type="number" id="width" min="1" max="100" value="80" oninput="generateAscii()">
 
-    <div id="output" class="output-container">
+        <label for="height">Character Height:</label>
+        <input type="number" id="height" min="1" max="50" value="20" oninput="generateAscii()">
+
+        <button onclick="copyToClipboard()">Select & Copy</button>
+
         <pre id="asciiOutput"></pre>
     </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
