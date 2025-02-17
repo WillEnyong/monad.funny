@@ -1,65 +1,153 @@
-// Function to populate font options dynamically
-window.onload = function() {
-    figlet.fonts(function(err, fonts) {
-        if (err) {
-            console.error('Error loading fonts:', err);
-            return;
-        }
+const generateButton = document.getElementById('generateButton');
+const inputText = document.getElementById('inputText');
+const asciiOutput = document.getElementById('asciiOutput');
+const fontSelect = document.getElementById('fontSelect');
 
-        const fontSelect = document.getElementById('fontSelect');
-        if (fonts.length === 0) {
-            alert("No fonts available.");
-            return;
-        }
+// Data Font (Ini adalah contoh sederhana, Anda perlu memperluasnya)
+const fonts = {
+    graffiti: {
+        'A': "  ####  \n #    # \n #    # \n ###### \n #    # \n #    # \n",
+        'B': " #####  \n #     #\n #####  \n #     #\n #####  \n",
+        ' ': "     \n", // Spasi
+        '1': "  #  \n ##  \n  #  \n  #  \n #####\n",
+        'C': "  ####  \n #      \n #      \n #      \n #      \n  ####  \n" ,
+        'D': " #####  \n #     #\n #     #\n #     #\n #####  \n" ,
+        'E': " ###### \n #      \n ###### \n #      \n ###### \n",
+         'F': " ###### \n #      \n ###### \n #      \n #      \n",
+         'G': "  ####  \n #      \n #  ####\n #     #\n  ##### \n",
+         'H': " #    # \n #    # \n ###### \n #    # \n #    # \n",
+         'I': " ###### \n   ##   \n   ##   \n   ##   \n ###### \n",
+        'J': " ###### \n    ##  \n    ##  \n    ##  \n ###### \n",
+        'K': " #    # \n #   #  \n ###### \n #   #  \n #    # \n",
+        'L': " #      \n #      \n #      \n #      \n ###### \n",
+        'M': " #    # \n ##  ## \n # ## # \n #    # \n #    # \n",
+        'N': " #    # \n ##   # \n # #  # \n #  # # \n #   ## \n",
+        'O': "  ####  \n #    # \n #    # \n #    # \n  ####  \n",
+        'P': " #####  \n #     #\n #####  \n #      \n #      \n",
+        'Q': "  ####  \n #    # \n #    # \n #   ## \n  #### #\n",
+        'R': " #####  \n #     #\n #####  \n #  #   \n #   #  \n",
+        'S': "  ####  \n #      \n  ####  \n      # \n  ####  \n",
+        'T': " ###### \n   ##   \n   ##   \n   ##   \n   ##   \n",
+        'U': " #    # \n #    # \n #    # \n #    # \n  ####  \n",
+        'V': " #    # \n #    # \n #    # \n  #  #  \n   ##   \n",
+        'W': " #    # \n #    # \n # # # # \n # # # # \n  #  #  \n",
+        'X': " #    # \n  #  #  \n   ##   \n  #  #  \n #    # \n",
+        'Y': " #    # \n  #  #  \n   ##   \n   ##   \n   ##   \n",
+        'Z': " ###### \n     #  \n    #   \n   #    \n ###### \n",
+        '0': "  ####  \n #    # \n #    # \n #    # \n  ####  \n",
+        '2': " ###### \n      # \n  ##### \n #      \n ###### \n",
+        '3': " ###### \n      # \n  ##### \n      # \n ###### \n",
+        '4': " #    # \n #    # \n ###### \n      # \n      # \n",
+        '5': " ###### \n #      \n ###### \n      # \n ###### \n",
+        '6': "  ####  \n #      \n ###### \n #    # \n  ####  \n",
+        '7': " ###### \n      # \n     #  \n    #   \n   #    \n",
+        '8': "  ####  \n #    # \n  ####  \n #    # \n  ####  \n",
+        '9': "  ####  \n #    # \n  ##### \n      # \n  ####  \n",
 
-        // Populate the font select dropdown
-        fonts.forEach((font) => {
-            const option = document.createElement('option');
-            option.value = font;
-            option.textContent = font;
-            fontSelect.appendChild(option);
-        });
 
-        // Set default font
-        fontSelect.value = fonts[0];
-    });
+    },
+    standard: {
+         'A': "  ***  \n *   * \n *   * \n ***** \n *   * \n *   * \n",
+        'B': " ****  \n *   * \n ****  \n *   * \n ****  \n",
+        ' ': "     \n",
+        '1': "  *  \n **  \n  *  \n  *  \n *****\n",
+        'C': "  ***  \n *      \n *      \n *      \n *      \n  ***  \n",
+        'D': " ****  \n *   * \n *   * \n *   * \n ****  \n",
+        'E': " ****** \n *      \n ****** \n *      \n ****** \n",
+         'F': " ****** \n *      \n ****** \n *      \n *      \n",
+         'G': "  ***  \n *      \n *  ***\n *     *\n  **** \n",
+         'H': " *   * \n *   * \n ***** \n *   * \n *   * \n",
+         'I': " ****** \n   **   \n   **   \n   **   \n ****** \n",
+        'J': " ****** \n    **  \n    **  \n    **  \n ****** \n",
+        'K': " *   * \n *  *  \n ****  \n *  *  \n *   * \n",
+        'L': " *      \n *      \n *      \n *      \n ****** \n",
+        'M': " *   * \n ** ** \n * * * \n *   * \n *   * \n",
+        'N': " *   * \n **  * \n * * * \n *  ** \n *   **\n",
+        'O': "  ***  \n *   * \n *   * \n *   * \n  ***  \n",
+        'P': " ****  \n *   * \n ****  \n *      \n *      \n",
+        'Q': "  ***  \n *   * \n *   * \n *  ** \n  *** *\n",
+        'R': " ****  \n *   * \n ****  \n *  *   \n *   *  \n",
+        'S': "  ***  \n *      \n  ***  \n      * \n  ***  \n",
+        'T': " ****** \n   **   \n   **   \n   **   \n   **   \n",
+        'U': " *   * \n *   * \n *   * \n *   * \n  ***  \n",
+        'V': " *   * \n *   * \n *   * \n  * *  \n   **   \n",
+        'W': " *   * \n *   * \n * * * * \n * * * * \n  *  *  \n",
+        'X': " *   * \n  * *  \n   **   \n  * *  \n *   * \n",
+        'Y': " *   * \n  * *  \n   **   \n   **   \n   **   \n",
+        'Z': " ****** \n     *  \n    *   \n   *    \n ****** \n",
+        '0': "  ***  \n *   * \n *   * \n *   * \n  ***  \n",
+        '2': " ****** \n      * \n  ***** \n *      \n ****** \n",
+        '3': " ****** \n      * \n  ***** \n      * \n ****** \n",
+        '4': " *   * \n *   * \n ****** \n      * \n      * \n",
+        '5': " ****** \n *      \n ****** \n      * \n ****** \n",
+        '6': "  ***  \n *      \n ****** \n *   * \n  ***  \n",
+        '7': " ****** \n      * \n     *  \n    *   \n   *    \n",
+        '8': "  ***  \n *   * \n  ***  \n *   * \n  ***  \n",
+        '9': "  ***  \n *   * \n  **** \n      * \n  ***  \n",
+
+    },
+    slant: {
+        'A': "  ***  \n *   * \n *   * \n *   * \n ***** \n",
+        'B': " ***  \n *   * \n *   * \n *   * \n ***  \n",
+        ' ': "  \n",
+        '1': "  *  \n * * \n  * \n  * \n ***** \n",
+        'C': "  *** \n *    \n *     \n *     \n  *** \n",
+        'D': " ***  \n *   * \n *   * \n *   * \n ***  \n",
+        'E': " ***** \n *     \n *****  \n *      \n *****  \n",
+        'F': " *****  \n *      \n *****  \n *      \n *      \n",
+        'G': "  ***  \n *   * \n *     \n *   *  \n  ***  \n",
+        'H': " *   * \n *   * \n ***** \n *   * \n *   * \n",
+        'I': " *** \n  *  \n  *  \n  *  \n *** \n",
+        'J': "  *** \n   *  \n   *  \n   *  \n  ***  \n",
+        'K': " *   * \n *  * \n *** \n *  * \n *   * \n",
+        'L': " *  \n *  \n *  \n *  \n ***  \n",
+        'M': " *   *  \n * * * \n * * *  \n *   * \n *   *  \n",
+        'N': " *   * \n **  * \n * * * \n *  ** \n *   * \n",
+        'O': "  ***  \n *   * \n *   * \n *   * \n  ***  \n",
+        'P': " ***   \n *   * \n ***   \n *   \n *   \n",
+        'Q': "  *** \n *   * \n *   * \n *  * \n  *** \n",
+        'R': " ***  \n *   * \n ***  \n *   * \n *    * \n",
+        'S': "  ***  \n *      \n  ***  \n      *  \n  ***  \n",
+        'T': " ***** \n  *  \n  *  \n  * \n  * \n",
+        'U': " *   * \n *   * \n *   * \n *   * \n  *** \n",
+        'V': " *   *  \n *   * \n  * *  \n   *   \n   *    \n",
+        'W': " *   * \n *   *  \n * * * \n * * * \n  * *  \n",
+        'X': " *   * \n  * * \n   * \n  * * \n *   * \n",
+        'Y': " *   * \n  * * \n   *  \n   *  \n   * \n",
+        'Z': " ***** \n    *  \n   *   \n  *    \n *****  \n",
+        '0': "  ***  \n *   * \n *   * \n *   * \n  ***  \n",
+        '2': " *****  \n     * \n   *** \n  *     \n ***** \n",
+        '3': " ***** \n      * \n   *** \n      * \n ***** \n",
+        '4': " *  * \n *  * \n *****  \n      *  \n      *  \n",
+        '5': " ***** \n *      \n ***** \n      * \n ***** \n",
+        '6': "  *** \n *     \n ***** \n *   * \n  *** \n",
+        '7': " *****  \n     *  \n    *   \n   *    \n  *    \n",
+        '8': "  ***  \n *   * \n  ***  \n *   * \n  ***  \n",
+        '9': "  ***  \n *   * \n  ***  \n       * \n  *** \n",
+    }
 };
 
-// Function to generate ASCII art
-function generateASCII() {
-    const text = document.getElementById('textInput').value;
-    const font = document.getElementById('fontSelect').value;
-    const width = document.getElementById('widthSelect').value;
-    const height = document.getElementById('heightSelect').value;
+function generateASCIIArt(text, selectedFont) {
+    let asciiArt = "";
+    const font = fonts[selectedFont];
 
-    if (text.trim() === "") {
-        alert("Please enter some text!");
-        return;
+    if (!font) {
+        return "Font tidak ditemukan."; // Handle jika font tidak ada
     }
 
-    // Generate ASCII art using figlet
-    figlet.text(text, { font: font, width: width, height: height }, function(err, result) {
-        if (err) {
-            console.error('Error generating ASCII:', err);
-            return;
+    for (const char of text.toUpperCase()) {
+        if (font[char]) {
+            asciiArt += font[char];
+        } else {
+            asciiArt += " ? \n"; // Karakter tidak ditemukan
         }
-        document.getElementById('asciiOutput').textContent = result;
-    });
-}
-
-// Function to download the ASCII art as a file
-function downloadASCII() {
-    const asciiArt = document.getElementById('asciiOutput').textContent;
-
-    if (asciiArt.trim() === "") {
-        alert("No ASCII art to download!");
-        return;
     }
-
-    // Create a Blob and trigger the download
-    const blob = new Blob([asciiArt], { type: 'text/plain' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'ascii_art.txt';
-    link.click();
+    return asciiArt;
 }
+
+generateButton.addEventListener('click', () => {
+    const text = inputText.value;
+    const selectedFont = fontSelect.value;
+    const asciiArt = generateASCIIArt(text, selectedFont);
+    asciiOutput.textContent = asciiArt;
+});
