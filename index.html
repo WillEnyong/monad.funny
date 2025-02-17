@@ -15,10 +15,31 @@
     </nav>
     <h1>Text to ASCII Art</h1>
     <textarea id="textInput" placeholder="Masukkan teks..."></textarea><br>
+    
+    <label for="fontSelect">Font:</label>
+    <select id="fontSelect"></select>
+    
+    <label for="widthSelect">Character Width:</label>
+    <select id="widthSelect">
+        <option value="default">Default</option>
+        <option value="full">Full</option>
+        <option value="fitted">Fitted</option>
+    </select>
+    
+    <label for="heightSelect">Character Height:</label>
+    <select id="heightSelect">
+        <option value="default">Default</option>
+        <option value="smush">Smush</option>
+        <option value="full">Full</option>
+    </select>
+    
+    <br>
     <button onclick="generateASCII()">Generate</button>
     <button onclick="downloadASCII()">Download</button>
     <br><br>
     <pre id="asciiOutput"></pre>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.4/figlet.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
