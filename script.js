@@ -1,8 +1,6 @@
 function generateAscii() {
     let text = document.getElementById("inputText").value;
     let font = document.getElementById("font").value;
-    let width = document.getElementById("width").value;
-    let height = document.getElementById("height").value;
     let output = document.getElementById("asciiOutput");
 
     if (text.trim() === "") {
@@ -10,13 +8,14 @@ function generateAscii() {
         return;
     }
 
-    // Placeholder ASCII Generator (Nantinya pakai API atau library)
-    let asciiArt = "";
-    for (let i = 0; i < height; i++) {
-        asciiArt += text.split("").map(char => char.repeat(width)).join(" ") + "\n";
-    }
-
-    output.textContent = asciiArt;
+    figlet.text(text, { font: font }, function (err, result) {
+        if (err) {
+            output.textContent = "Error generating ASCII art!";
+            console.error(err);
+            return;
+        }
+        output.textContent = result;
+    });
 }
 
 function copyToClipboard() {
