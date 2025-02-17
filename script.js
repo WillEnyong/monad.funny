@@ -1,25 +1,29 @@
 function generateAscii() {
-    let text = document.getElementById('inputText').value;
-    let font = document.getElementById('font').value;
-    let width = parseInt(document.getElementById('width').value) || 80;
-    let height = parseInt(document.getElementById('height').value) || 20;
+    let text = document.getElementById("inputText").value;
+    let font = document.getElementById("font").value;
+    let width = document.getElementById("width").value;
+    let height = document.getElementById("height").value;
+    let output = document.getElementById("asciiOutput");
 
-    figlet.defaults({ width: width, height: height });
+    if (text.trim() === "") {
+        output.textContent = "Please enter text!";
+        return;
+    }
 
-    figlet.text(text, { font: font }, function (err, data) {
-        if (err) {
-            console.error('Error generating ASCII art:', err);
-            return;
-        }
-        document.getElementById('asciiOutput').innerText = data;
-    });
+    // Placeholder ASCII Generator (Nantinya pakai API atau library)
+    let asciiArt = "";
+    for (let i = 0; i < height; i++) {
+        asciiArt += text.split("").map(char => char.repeat(width)).join(" ") + "\n";
+    }
+
+    output.textContent = asciiArt;
 }
 
 function copyToClipboard() {
-    let output = document.getElementById('asciiOutput').innerText;
-    navigator.clipboard.writeText(output).then(() => {
-        alert("ASCII Art berhasil disalin!");
+    let output = document.getElementById("asciiOutput");
+    navigator.clipboard.writeText(output.textContent).then(() => {
+        alert("Copied to clipboard!");
     }).catch(err => {
-        console.error("Gagal menyalin teks:", err);
+        console.error("Failed to copy:", err);
     });
 }
