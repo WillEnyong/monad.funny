@@ -14,11 +14,17 @@
         <a href="#contact">Contact</a>
     </nav>
     <h1>Text to ASCII Art</h1>
+    
+    <!-- Input for user text -->
     <textarea id="textInput" placeholder="Masukkan teks..."></textarea><br>
     
+    <!-- Font selection dropdown -->
     <label for="fontSelect">Font:</label>
-    <select id="fontSelect"></select>
+    <select id="fontSelect">
+        <!-- Dynamically populated with fonts -->
+    </select>
     
+    <!-- Character width selection -->
     <label for="widthSelect">Character Width:</label>
     <select id="widthSelect">
         <option value="default">Default</option>
@@ -26,6 +32,7 @@
         <option value="fitted">Fitted</option>
     </select>
     
+    <!-- Character height selection -->
     <label for="heightSelect">Character Height:</label>
     <select id="heightSelect">
         <option value="default">Default</option>
@@ -34,12 +41,18 @@
     </select>
     
     <br>
+    <!-- Buttons for generating and downloading ASCII -->
     <button onclick="generateASCII()">Generate</button>
     <button onclick="downloadASCII()">Download</button>
     <br><br>
+    
+    <!-- Area to display ASCII output -->
     <pre id="asciiOutput"></pre>
     
+    <!-- Load figlet.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.4/figlet.min.js"></script>
+    
+    <!-- Your custom script -->
     <script src="script.js"></script>
 </body>
 </html>
