@@ -1,58 +1,33 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text to ASCII Art</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ASCII Art Generator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <h1>Text to ASCII Art</h1>
-    
-    <!-- Input untuk teks -->
-    <textarea id="textInput" placeholder="Masukkan teks..."></textarea><br>
-    
-    <!-- Dropdown pemilihan font -->
-    <label for="fontSelect">Font:</label>
-    <select id="fontSelect">
-        <!-- Akan dipenuhi secara dinamis dengan font -->
-    </select>
-    
-    <!-- Pemilihan lebar karakter -->
-    <label for="widthSelect">Character Width:</label>
-    <select id="widthSelect">
-        <option value="default">Default</option>
-        <option value="full">Full</option>
-        <option value="fitted">Fitted</option>
-    </select>
-    
-    <!-- Pemilihan tinggi karakter -->
-    <label for="heightSelect">Character Height:</label>
-    <select id="heightSelect">
-        <option value="default">Default</option>
-        <option value="smush">Smush</option>
-        <option value="full">Full</option>
-    </select>
-    
-    <br>
-    <!-- Tombol untuk menghasilkan dan mengunduh ASCII -->
-    <button onclick="generateASCII()">Generate</button>
-    <button onclick="downloadASCII()">Download</button>
-    <br><br>
-    
-    <!-- Area untuk menampilkan output ASCII -->
-    <pre id="asciiOutput"></pre>
-    
-    <!-- Memuat skrip figlet.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.4/figlet.min.js"></script>
-    
-    <!-- Skrip kustommu -->
+    <h1>ASCII Art Generator</h1>
+
+    <div class="input-container">
+        <label for="inputText">Masukkan Teks:</label><br>
+        <textarea id="inputText" rows="4" cols="50" placeholder="Masukkan teks di sini"></textarea>
+    </div>
+
+    <div class="font-selection">
+        <label for="fontSelect">Pilih Font:</label>
+        <select id="fontSelect">
+            <option value="graffiti">Graffiti</option>
+            <option value="standard">Standard</option>
+            <option value="slant">Slant</option>
+            <!-- Tambahkan opsi font lain di sini -->
+        </select>
+    </div>
+
+    <button id="generateButton">Generate ASCII Art</button>
+
+    <div id="output" class="output-container">
+        <pre id="asciiOutput"></pre>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
