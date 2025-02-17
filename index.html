@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASCII Art Generator</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.5.2/figlet.min.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>ASCII Art Generator</h2>
-        <label for="inputText">Enter Text:</label>
-        <input type="text" id="inputText">
 
-        <label for="font">Font:</label>
+        <label for="inputText">Enter Text:</label>
+        <input type="text" id="inputText" placeholder="Type something...">
+
+        <label for="font">Select Font:</label>
         <select id="font">
-            <option value="standard">Standard</option>
-            <option value="graffiti">Graffiti</option>
-            <option value="slant">Slant</option>
+            <option value="Standard">Standard</option>
+            <option value="Graffiti">Graffiti</option>
+            <option value="Slant">Slant</option>
+            <option value="Big">Big</option>
         </select>
 
         <label for="width">Character Width:</label>
-        <input type="number" id="width" min="1" value="10">
+        <input type="number" id="width" min="1" max="100" value="80">
 
         <label for="height">Character Height:</label>
-        <input type="number" id="height" min="1" value="10">
+        <input type="number" id="height" min="1" max="100" value="20">
 
         <button onclick="generateAscii()">Generate</button>
         <button onclick="copyToClipboard()">Select & Copy</button>
