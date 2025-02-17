@@ -15,16 +15,16 @@
     </nav>
     <h1>Text to ASCII Art</h1>
     
-    <!-- Input for user text -->
+    <!-- Input untuk teks -->
     <textarea id="textInput" placeholder="Masukkan teks..."></textarea><br>
     
-    <!-- Font selection dropdown -->
+    <!-- Dropdown pemilihan font -->
     <label for="fontSelect">Font:</label>
     <select id="fontSelect">
-        <!-- Dynamically populated with fonts -->
+        <!-- Akan dipenuhi secara dinamis dengan font -->
     </select>
     
-    <!-- Character width selection -->
+    <!-- Pemilihan lebar karakter -->
     <label for="widthSelect">Character Width:</label>
     <select id="widthSelect">
         <option value="default">Default</option>
@@ -32,7 +32,7 @@
         <option value="fitted">Fitted</option>
     </select>
     
-    <!-- Character height selection -->
+    <!-- Pemilihan tinggi karakter -->
     <label for="heightSelect">Character Height:</label>
     <select id="heightSelect">
         <option value="default">Default</option>
@@ -41,18 +41,18 @@
     </select>
     
     <br>
-    <!-- Buttons for generating and downloading ASCII -->
+    <!-- Tombol untuk menghasilkan dan mengunduh ASCII -->
     <button onclick="generateASCII()">Generate</button>
     <button onclick="downloadASCII()">Download</button>
     <br><br>
     
-    <!-- Area to display ASCII output -->
+    <!-- Area untuk menampilkan output ASCII -->
     <pre id="asciiOutput"></pre>
     
-    <!-- Load figlet.js library -->
+    <!-- Memuat skrip figlet.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/figlet/1.2.4/figlet.min.js"></script>
     
-    <!-- Your custom script -->
+    <!-- Skrip kustommu -->
     <script src="script.js"></script>
 </body>
 </html>
